@@ -1,3 +1,4 @@
+import 'package:deliver_test_app/screens/animation.dart';
 import 'package:deliver_test_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
