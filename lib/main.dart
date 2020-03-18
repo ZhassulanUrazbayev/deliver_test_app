@@ -1,6 +1,7 @@
 import 'package:deliver_test_app/screens/animation.dart';
-import 'package:deliver_test_app/screens/home_page.dart';
+import 'package:deliver_test_app/screens/menu_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +13,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomePage());
+//    SystemChrome.setSystemUIOverlayStyle(
+//        SystemUiOverlayStyle(statusBarColor: Colors.white));
+    return MaterialApp(
+//      theme: ThemeData(
+//        primarySwatch: Colors.black,
+//      ),
+      home: HomePage(),
+    );
   }
 }

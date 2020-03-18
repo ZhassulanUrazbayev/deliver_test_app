@@ -1,8 +1,12 @@
 import 'dart:ui';
-
+import 'package:deliver_test_app/screens/food_page.dart';
+import 'package:deliver_test_app/utils/constants.dart' as Constants;
+import 'package:deliver_test_app/models/food_model.dart';
 import 'package:deliver_test_app/screens/animation.dart';
+import 'package:deliver_test_app/widgets/buy_btn.dart';
 import 'package:deliver_test_app/widgets/drawer.dart';
 import 'package:deliver_test_app/widgets/dropdown_cities.dart';
+import 'package:deliver_test_app/widgets/food_description.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -15,7 +19,6 @@ class _HomePageState extends State<HomePage> {
   final List<String> _dropdownValues = ["One", "Two", "Three", "Four", "Five"];
 
   int _selectedIndex = 0;
-  int _currentTab = 0;
 
   List<IconData> _icons = [
     Icons.fastfood,
@@ -29,22 +32,16 @@ class _HomePageState extends State<HomePage> {
   String _currentlySelected = "";
 
   ///If the box is expanded
-  bool _isExpanded = false;
-
-  void _toogleExpand() {
-    setState(() {
-      _isExpanded = !_isExpanded;
-    });
-  }
+  bool _isExpanded = true;
 
   Widget _buildIcon(int index) {
     return GestureDetector(
       onTap: () {
         setState(() {
           _selectedIndex = index;
-          if(index != 0){
+          if (index != 0) {
             _isExpanded = false;
-          } else{
+          } else {
             _isExpanded = true;
           }
         });
@@ -96,7 +93,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     this._currentlySelected = _dropdownValues[0];
   }
@@ -114,6 +110,7 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
+            brightness: Brightness.light,
             iconTheme: IconThemeData(color: Colors.black),
             elevation: 0.0,
             title: DropdownButtonHideUnderline(child: dropdownWidget()),
@@ -125,7 +122,6 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               ExpandedSection(
@@ -135,17 +131,18 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 42.0),
+                      padding:
+                          EdgeInsets.only(left: 42.0, top: 60.0, bottom: 15.0),
                       child: Text(
-                        "Голоден?",
-                        style: TextStyle(fontSize: 45.0, fontWeight: FontWeight.w500),
+                        Constants.mainTitle,
+                        style: TextStyle(
+                            fontSize: 45.0, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(
                         left: 42.0,
                         right: 42.0,
-                        bottom: 40.0,
                         top: 20.0,
                       ),
                       child: Row(
@@ -158,10 +155,9 @@ class _HomePageState extends State<HomePage> {
                                     size: 30.0,
                                   ),
                                   border: InputBorder.none,
-                                  hintText: 'Enter a search term'),
+                                  hintText: Constants.searchHint),
                             ),
                           ),
-//                TextField(),
                         ],
                       ),
                     ),
@@ -169,7 +165,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 15.0),
+                padding: EdgeInsets.only(bottom: 15.0, top: 30.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: _icons
@@ -179,106 +175,56 @@ class _HomePageState extends State<HomePage> {
                       .toList(),
                 ),
               ),
-              Container(
-                height: 200.0,
-                child: FittedBox(
-                  child: Image.network(
-                      "https://www.kbc.co.ke/wp-content/uploads/2019/07/food-cover.jpg"),
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 42.0, vertical: 15.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Cheese Pittasdfasdfas',
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
+              Expanded(
+                child: ListView.builder(
+                    itemCount: foods.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Food food = foods[index];
+                      return GestureDetector(
+                        onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => FoodPage(
+                              food: food,
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Row(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
-                            Icon(
-                              Icons.star_border,
-                              size: 20.0,
+                            Container(
+                              height: 200.0,
+                              child: FittedBox(
+                                child: Image.network(food.imageUrl),
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            Text(
-                              '4,5',
-                              style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Text(
-                              '(100+)',
-                              style:
-                                  TextStyle(fontSize: 16.0, color: Colors.grey),
-                            ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
-                            Text(
-                              '25-30',
-                              style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.bold),
-                            ),
-                            Text(
-                              ' min',
-                              style: TextStyle(fontSize: 16.0),
+                            FoodInfo(food),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 42.0, vertical: 15.0),
+                              child: RaisedButton(
+                                onPressed: () {},
+                                padding: EdgeInsets.symmetric(vertical: 18.0),
+                                textColor: Colors.black,
+                                elevation: 0.0,
+                                child: Text(
+                                  Constants.buy,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16.0),
+                                ),
+                                color: Color.fromRGBO(235, 200, 52, 0.8),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: new BorderRadius.circular(20.0),
+                                ),
+                              ),
                             ),
                           ],
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      width: 40.0,
-                    ),
-                    Text(
-                      '₽ ',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w300, fontSize: 16.0),
-                    ),
-                    Text(
-                      '300',
-                      style: TextStyle(
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                      );
+                    }),
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 42.0, vertical: 15.0),
-                child: RaisedButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.symmetric(vertical: 18.0),
-                  textColor: Colors.black,
-                  elevation: 0.0,
-                  child: Text(
-                    'Купить',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
-                  ),
-                  color: Color.fromRGBO(235, 200, 52, 0.8),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
-                  ),
-                ),
-              )
             ],
           ),
           drawer: Theme(

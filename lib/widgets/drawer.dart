@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:deliver_test_app/utils/constants.dart' as Constants;
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -7,41 +8,29 @@ class AppDrawer extends StatelessWidget {
       child: Drawer(
         child: Column(
           children: <Widget>[
-            _createHeader(),
-            _createDrawerItem(
-              text: 'Contacts',
-            ),
-            _createDrawerItem(
-              text: 'Events',
-            ),
-            _createDrawerItem(
-              text: 'Notes',
-            ),
-            _createDrawerItem(text: 'Steps'),
-            _createDrawerItem(text: 'Authors'),
-            _createDrawerItem(text: 'Flutter Documentation'),
-            _createDrawerItem(text: 'Useful Links'),
-            _createDrawerItem(text: 'Report an issue'),
+            _createHeader("Adrey Popov"),
+            _createDrawerItem(text: Constants.allMenu, isBasket: false, amount: ""),
+            _createDrawerItem(text: Constants.orders, isBasket: false, amount: "6"),
+            _createDrawerItem(text: Constants.basket, isBasket: true, amount: "3"),
           ],
         ),
       ),
     );
   }
 
-  Widget _createHeader() {
+  Widget _createHeader(String text) {
     return SafeArea(
-      child: DrawerHeader(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 30.0),
           margin: EdgeInsets.zero,
-          padding: EdgeInsets.only(top: 25.0),
-          child: Column(children: <Widget>[
-            _createHeaderItem(
-                icon: Icons.person_outline, text: "Вход/Регистрация"),
-            _createHeaderItem(icon: Icons.place, text: "Вход/Регистрация"),
-          ])),
+          child: Center(
+            child: _createHeaderItem(icon: Icons.person_outline, name: text, email: "test1@gmail.com"),
+          )),
     );
   }
 
-  Widget _createDrawerItem({String text, GestureTapCallback onTap}) {
+  Widget _createDrawerItem(
+      {String text, bool isBasket, String amount, GestureTapCallback onTap}) {
     return Container(
       child: ListTile(
         title: Row(
@@ -51,18 +40,23 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Text(
                 text,
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.w300),
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 15.0,),
               ),
-            ) ,
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4.0),
-              child: Text('3'),
+              child: Text(
+                amount,
+                style: TextStyle(
+                  color: isBasket ? Colors.black : Colors.grey,
+                ),
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(
                   Radius.circular(200),
                 ),
-                color: Colors.yellow,
+                color: isBasket ? Colors.yellow : Colors.transparent,
               ),
             )
           ],
@@ -73,37 +67,42 @@ class AppDrawer extends StatelessWidget {
   }
 
   Widget _createHeaderItem(
-      {IconData icon, String text, GestureTapCallback onTap}) {
+      {IconData icon, String name, String email, GestureTapCallback onTap}) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5.0),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colors.white12),
-        ),
-      ),
       child: ListTile(
-//        leading: Icon(icon, color: Colors.white, size: 24.0,),
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CircleAvatar(
               backgroundColor: Colors.black,
               radius: 20,
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 8.0),
-              child: Text(
-                text,
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.0),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  name,
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 16.0),
+                ),
+                Text(
+                  email,
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w300,
+                      fontSize: 14.0),
+                ),
+              ],
+            ),
+            Icon(
+              Icons.exit_to_app,
+              color: Colors.black,
             )
           ],
-        ),
-        trailing: Icon(
-          Icons.keyboard_arrow_right,
-          color: Colors.black,
         ),
         onTap: onTap,
       ),
