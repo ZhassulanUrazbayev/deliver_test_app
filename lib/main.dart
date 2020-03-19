@@ -1,4 +1,5 @@
 import 'package:deliver_test_app/screens/animation.dart';
+import 'package:deliver_test_app/screens/example_collapsing.dart';
 import 'package:deliver_test_app/screens/menu_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,12 +14,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-//    SystemChrome.setSystemUIOverlayStyle(
-//        SystemUiOverlayStyle(statusBarColor: Colors.white));
     return MaterialApp(
-//      theme: ThemeData(
-//        primarySwatch: Colors.black,
-//      ),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
       home: HomePage(),
     );
   }

@@ -177,53 +177,54 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 child: ListView.builder(
-                    itemCount: foods.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Food food = foods[index];
-                      return GestureDetector(
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => FoodPage(
-                              food: food,
-                            ),
+                  itemCount: foods.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Food food = foods[index];
+                    return GestureDetector(
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => FoodPage(
+                            food: food,
                           ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Container(
-                              height: 200.0,
-                              child: FittedBox(
-                                child: Image.network(food.imageUrl),
-                                fit: BoxFit.fill,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Container(
+                            height: 200.0,
+                            child: FittedBox(
+                              child: Image.network(food.imageUrl),
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          FoodInfo(food),
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 42.0, vertical: 15.0),
+                            child: RaisedButton(
+                              onPressed: () {},
+                              padding: EdgeInsets.symmetric(vertical: 18.0),
+                              textColor: Colors.black,
+                              elevation: 0.0,
+                              child: Text(
+                                Constants.buy,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16.0),
+                              ),
+                              color: Color.fromRGBO(235, 200, 52, 0.8),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(20.0),
                               ),
                             ),
-                            FoodInfo(food),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 42.0, vertical: 15.0),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                padding: EdgeInsets.symmetric(vertical: 18.0),
-                                textColor: Colors.black,
-                                elevation: 0.0,
-                                child: Text(
-                                  Constants.buy,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16.0),
-                                ),
-                                color: Color.fromRGBO(235, 200, 52, 0.8),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(20.0),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ],
           ),

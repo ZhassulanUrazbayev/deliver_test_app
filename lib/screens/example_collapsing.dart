@@ -1,21 +1,17 @@
 import 'package:deliver_test_app/models/additional_food_model.dart';
 import 'package:deliver_test_app/models/food_model.dart';
-import 'package:deliver_test_app/widgets/collapsing_app_bar.dart';
 import 'package:deliver_test_app/widgets/food_description.dart';
 import 'package:flutter/material.dart';
 import 'package:deliver_test_app/utils/constants.dart' as Constants;
 
-class FoodPage extends StatefulWidget {
-  final Food food;
-
-  FoodPage({this.food});
-
+class CollapsingAppBar extends StatefulWidget {
   @override
-  _FoodPageState createState() => _FoodPageState();
+  _CollapsingAppBarState createState() => _CollapsingAppBarState();
 }
 
-class _FoodPageState extends State<FoodPage>
+class _CollapsingAppBarState extends State<CollapsingAppBar>
     with SingleTickerProviderStateMixin {
+  Food food = foods[0];
   TabController _controller;
 
   @override
@@ -58,12 +54,12 @@ class _FoodPageState extends State<FoodPage>
                   SizedBox(
                     height: 80.0,
                   ),
-                  FoodInfo(widget.food),
+                  FoodInfo(food),
                   Padding(
                     padding:
                         EdgeInsets.symmetric(horizontal: 42.0, vertical: 15.0),
                     child: Text(
-                      widget.food.description,
+                      food.description,
                       style: TextStyle(fontSize: 16.0),
                     ),
                   ),
@@ -89,24 +85,24 @@ class _FoodPageState extends State<FoodPage>
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 42.0),
                     child: new TabBar(
-                      unselectedLabelColor: Colors.grey,
-                      labelColor: Colors.black,
                       controller: _controller,
                       tabs: [
                         new Tab(
                           child: Text(
-                            Constants.additionalName,
-                            overflow: TextOverflow.ellipsis,
+                            "dfasdf",
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                         new Tab(
                           child: Text(
-                            Constants.similarName,
+                            "dfasdf",
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                         new Tab(
                           child: Text(
-                            Constants.reviewName,
+                            "dfasdf",
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ],
@@ -155,8 +151,9 @@ class _FoodPageState extends State<FoodPage>
                                               Text(
                                                 "${additionalFood.price.toString()} ${Constants.rubleName}",
                                                 style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize: 15.0),
+                                                    fontWeight:
+                                                        FontWeight.bold,
+                                                fontSize: 15.0),
                                               )
                                             ],
                                           ),
