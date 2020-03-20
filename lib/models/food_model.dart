@@ -32,7 +32,7 @@ final List<Food> foods = [
     price: 300,
   ),
   Food(
-    imageUrl: 'https://www.kbc.co.ke/wp-content/uploads/2019/07/food-cover.jpg',
+    imageUrl: 'https://www.sgs-caspian.com/-/media/global/images/structural-website-images/hero-images/hero-agri-appetizers.jpg',
     name: 'Горячий парень',
     description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ... It is a long established fact that a reader will be distracted by the readable content ... of Lorem Ipsum available, but the majority have suffered alteration in some form",
     overviewScore: 4.5,

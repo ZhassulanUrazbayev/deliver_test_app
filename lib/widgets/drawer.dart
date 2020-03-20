@@ -8,10 +8,13 @@ class AppDrawer extends StatelessWidget {
       child: Drawer(
         child: Column(
           children: <Widget>[
-            _createHeader("Adrey Popov"),
-            _createDrawerItem(text: Constants.allMenu, isBasket: false, amount: ""),
-            _createDrawerItem(text: Constants.orders, isBasket: false, amount: "6"),
-            _createDrawerItem(text: Constants.basket, isBasket: true, amount: "3"),
+            _createHeader("Andrey Popov"),
+            _createDrawerItem(
+                text: Constants.allMenu, isBasket: false, amount: ""),
+            _createDrawerItem(
+                text: Constants.orders, isBasket: false, amount: "6"),
+            _createDrawerItem(
+                text: Constants.basket, isBasket: true, amount: "3"),
           ],
         ),
       ),
@@ -21,10 +24,13 @@ class AppDrawer extends StatelessWidget {
   Widget _createHeader(String text) {
     return SafeArea(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 30.0),
+          padding: EdgeInsets.symmetric(vertical: 30.0),
           margin: EdgeInsets.zero,
           child: Center(
-            child: _createHeaderItem(icon: Icons.person_outline, name: text, email: "test1@gmail.com"),
+            child: _createHeaderItem(
+                icon: Icons.person_outline,
+                name: text,
+                email: "test1@gmail.com"),
           )),
     );
   }
@@ -40,8 +46,11 @@ class AppDrawer extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Text(
                 text,
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.w500, fontSize: 15.0,),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 15.0,
+                ),
               ),
             ),
             Container(
@@ -75,7 +84,8 @@ class AppDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             CircleAvatar(
-              backgroundColor: Colors.black,
+              backgroundImage: NetworkImage('https://i.pinimg.com/originals/0b/3c/0a/0b3c0afcec71c6b8742406cb33e9c51a.jpg'),
+              backgroundColor: Colors.transparent,
               radius: 20,
             ),
             Column(

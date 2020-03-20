@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:deliver_test_app/utils/constants.dart' as Constants;
 
-Widget BuyButton(){
-  Padding(
+Widget buyButton(){
+  return Padding(
     padding: EdgeInsets.symmetric(
         horizontal: 42.0, vertical: 15.0),
     child: RaisedButton(

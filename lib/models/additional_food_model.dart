@@ -15,11 +15,11 @@ final List<AdditionalFood> additionalFoods = [
   AdditionalFood(
     imageUrl: 'https://www.kbc.co.ke/wp-content/uploads/2019/07/food-cover.jpg',
     name: 'Дерзкая Марго',
-    description: "Lorem Ipsum is simply dummy text",
+    description: "Lorem Ipsum is simply dummy",
     price: 300,
   ),
   AdditionalFood(
-    imageUrl: 'https://www.kbc.co.ke/wp-content/uploads/2019/07/food-cover.jpg',
+    imageUrl: 'https://www.sgs-caspian.com/-/media/global/images/structural-website-images/hero-images/hero-agri-appetizers.jpg',
     name: 'Горячий парень',
     description: "Lorem Ipsum is simply dummy text",
     price: 300,
